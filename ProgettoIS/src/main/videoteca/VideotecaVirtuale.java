@@ -10,6 +10,8 @@ public interface VideotecaVirtuale extends Iterable<Film> {
 
     Film getFilm(Integer filmId);
 
+    void modificaFilm(Integer filmId, Film nuovoFilm);
+
     List<Film> getAllFilm();
 
 

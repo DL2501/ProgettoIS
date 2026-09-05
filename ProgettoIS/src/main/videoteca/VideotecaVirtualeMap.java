@@ -2,29 +2,16 @@ package main.videoteca;
 
 import java.util.*;
 
-public final class VideotecaVirtualeSingleton implements VideotecaVirtuale {
-
-    private static VideotecaVirtualeSingleton INSTANCE = null;
-
-    private Map<Integer,Film> videotecaVirtuale;
-    private int keyCounter;
+public class VideotecaVirtualeMap implements VideotecaVirtuale {
 
 
-    private VideotecaVirtualeSingleton() {
-        videotecaVirtuale = new HashMap<>();
-        keyCounter = 1;
-    }
+    private Map<Integer,Film> videotecaVirtuale = new HashMap<>();
+    private int keyCounter = 1;
 
-
-    public static synchronized VideotecaVirtualeSingleton getInstance() {
-        if (INSTANCE == null)
-            INSTANCE = new VideotecaVirtualeSingleton();
-        return INSTANCE;
-    }
 
 
     @Override
-    public synchronized void aggiungiFilm(Film f) {
+    public void aggiungiFilm(Film f) {
         if (f != null) {
             if (!(videotecaVirtuale.containsValue(f))) {
                 videotecaVirtuale.put(keyCounter,f);
@@ -38,7 +25,7 @@ public final class VideotecaVirtualeSingleton implements VideotecaVirtuale {
 
 
     @Override
-    public synchronized void rimuoviFilm(Integer filmId) {
+    public void rimuoviFilm(Integer filmId) {
         if (filmId != null) {
             if (videotecaVirtuale.containsKey(filmId)) {
                 videotecaVirtuale.remove(filmId);
@@ -51,7 +38,7 @@ public final class VideotecaVirtualeSingleton implements VideotecaVirtuale {
 
 
     @Override
-    public synchronized Film getFilm(Integer filmId) {
+    public Film getFilm(Integer filmId) {
         if (filmId != null) {
             if (videotecaVirtuale.containsKey(filmId))
                 return videotecaVirtuale.get(filmId);
@@ -59,6 +46,14 @@ public final class VideotecaVirtualeSingleton implements VideotecaVirtuale {
                 System.out.println("Il film con id " + filmId + " non è presente all'interno della videoteca.");
         }
         return null;
+    }
+
+    @Override
+    public void modificaFilm(Integer filmId, Film nuovoFilm) {
+        if (filmId != null && nuovoFilm != null && videotecaVirtuale.containsKey(filmId))
+            videotecaVirtuale.put(filmId,nuovoFilm);
+        else
+            System.out.println("Modifica non valida: il film che si desidera modificare potrebbe non essere presente nella videoteca.");
     }
 
 
