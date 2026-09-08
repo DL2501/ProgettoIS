@@ -9,6 +9,8 @@ public class RicercaStatoVisioneComponent extends AbstractRicercaComponent {
 
 
     public RicercaStatoVisioneComponent(StatoVisione statoVisione) {
+        if (statoVisione == null)
+            throw new IllegalArgumentException("Il valore dello stato di visione non può essere un valore non definito.");
         this.statoVisione = statoVisione;
     }
 

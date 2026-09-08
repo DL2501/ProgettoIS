@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface VideotecaVirtuale extends Iterable<Film> {
 
-    void aggiungiFilm(Film f);
+    boolean aggiungiFilm(Film f);
 
-    void rimuoviFilm(Integer filmId);
+    boolean rimuoviFilm(Integer filmId);
 
     Film getFilm(Integer filmId);
 
-    void modificaFilm(Integer filmId, Film nuovoFilm);
+    boolean modificaFilm(Integer filmId, Film nuovoFilm);
 
     List<Film> getAllFilm();
 

@@ -10,11 +10,11 @@ public class RicercaComposite implements RicercaComponent {
     private List<RicercaComponent> filtriFigli = new ArrayList<>();
 
 
-    public RicercaComposite(RicercaComponent... filtri) {
-        for (RicercaComponent filtro : filtri) {
-            if (filtro != null)
-                filtriFigli.add(filtro);
-        }
+    public RicercaComposite() {}
+
+    public RicercaComposite(List<RicercaComponent> filtriFigli) {
+        if (filtriFigli != null)
+            this.filtriFigli = filtriFigli;
     }
 
 
@@ -39,6 +39,11 @@ public class RicercaComposite implements RicercaComponent {
 
     public List<RicercaComponent> getFiltriFigli() {
         return filtriFigli;
+    }
+
+
+    public void rimuoviFiltriFigli() {
+        filtriFigli.clear();
     }
 
 
